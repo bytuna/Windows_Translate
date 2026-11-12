@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "lumina-translate",
   "version": "1.0.0",
@@ -16,22 +15,3 @@
     "electron": "^30.0.0"
   }
 }
-=======
-{
-  "name": "lumina-translate",
-  "version": "1.0.0",
-  "description": "Modern Quick Translate Tool",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "dependencies": {
-    "express": "^4.19.2",
-    "screenshot-desktop": "^1.15.6",
-    "tesseract.js": "^7.0.0"
-  },
-  "devDependencies": {
-    "electron": "^30.0.0"
-  }
-}
->>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
