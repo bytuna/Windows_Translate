@@ -1,0 +1,276 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      user-select: none;
+      background: transparent;
+      cursor: crosshair;
+    }
+    #cv {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+    const cv = document.getElementById('cv');
+    const ctx = cv.getContext('2d');
+
+    const bg = new Image();
+    let isDrawing = false;
+    let sx = 0, sy = 0;
+    let ready = false;
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') ipcRenderer.send('cancel-snipping');
+    });
+
+    window.addEventListener('mousedown', (e) => {
+      if (e.button === 2) {
+        ipcRenderer.send('cancel-snipping');
+        return;
+      }
+      if (!ready) return;
+      isDrawing = true;
+      sx = e.clientX;
+      sy = e.clientY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDrawing) return;
+      draw(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isDrawing) return;
+      isDrawing = false;
+
+      const ex = e.clientX;
+      const ey = e.clientY;
+      const rx = Math.min(sx, ex);
+      const ry = Math.min(sy, ey);
+      const rw = Math.abs(ex - sx);
+      const rh = Math.abs(ey - sy);
+
+      if (rw < 10 || rh < 10) {
+        draw();
+        return;
+      }
+
+      // Kırpma işlemi doğrudan bu pencerede orijinal çözünürlük oranıyla yapılıyor
+      const scaleX = bg.naturalWidth / cv.width;
+      const scaleY = bg.naturalHeight / cv.height;
+
+      const cropCv = document.createElement('canvas');
+      cropCv.width = Math.round(rw * scaleX);
+      cropCv.height = Math.round(rh * scaleY);
+      const cropCtx = cropCv.getContext('2d');
+
+      cropCtx.drawImage(
+        bg,
+        Math.round(rx * scaleX),
+        Math.round(ry * scaleY),
+        cropCv.width,
+        cropCv.height,
+        0,
+        0,
+        cropCv.width,
+        cropCv.height
+      );
+
+      ipcRenderer.send('snipping-done', cropCv.toDataURL('image/png'));
+    });
+
+    function draw(curX, curY) {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+
+      // Donmuş ekran görüntüsü
+      ctx.drawImage(bg, 0, 0, cv.width, cv.height);
+
+      // Koyu perde
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.40)';
+      ctx.fillRect(0, 0, cv.width, cv.height);
+
+      // Seçilen yerin aydınlatılması
+      if (isDrawing && curX !== undefined) {
+        const rx = Math.min(sx, curX);
+        const ry = Math.min(sy, curY);
+        const rw = Math.abs(curX - sx);
+        const rh = Math.abs(curY - sy);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(rx, ry, rw, rh);
+        ctx.clip();
+        ctx.drawImage(bg, 0, 0, cv.width, cv.height);
+        ctx.restore();
+
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(rx, ry, rw, rh);
+      }
+    }
+
+    ipcRenderer.on('init-snip', (event, dataUrl) => {
+      cv.width = window.innerWidth;
+      cv.height = window.innerHeight;
+
+      bg.onload = () => {
+        ready = true;
+        draw();
+      };
+      bg.src = dataUrl;
+    });
+  </script>
+</body>
+=======
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      user-select: none;
+      background: transparent;
+      cursor: crosshair;
+    }
+    #cv {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+    const cv = document.getElementById('cv');
+    const ctx = cv.getContext('2d');
+
+    const bg = new Image();
+    let isDrawing = false;
+    let sx = 0, sy = 0;
+    let ready = false;
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') ipcRenderer.send('cancel-snipping');
+    });
+
+    window.addEventListener('mousedown', (e) => {
+      if (e.button === 2) {
+        ipcRenderer.send('cancel-snipping');
+        return;
+      }
+      if (!ready) return;
+      isDrawing = true;
+      sx = e.clientX;
+      sy = e.clientY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDrawing) return;
+      draw(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isDrawing) return;
+      isDrawing = false;
+
+      const ex = e.clientX;
+      const ey = e.clientY;
+      const rx = Math.min(sx, ex);
+      const ry = Math.min(sy, ey);
+      const rw = Math.abs(ex - sx);
+      const rh = Math.abs(ey - sy);
+
+      if (rw < 10 || rh < 10) {
+        draw();
+        return;
+      }
+
+      // Kırpma işlemi doğrudan bu pencerede orijinal çözünürlük oranıyla yapılıyor
+      const scaleX = bg.naturalWidth / cv.width;
+      const scaleY = bg.naturalHeight / cv.height;
+
+      const cropCv = document.createElement('canvas');
+      cropCv.width = Math.round(rw * scaleX);
+      cropCv.height = Math.round(rh * scaleY);
+      const cropCtx = cropCv.getContext('2d');
+
+      cropCtx.drawImage(
+        bg,
+        Math.round(rx * scaleX),
+        Math.round(ry * scaleY),
+        cropCv.width,
+        cropCv.height,
+        0,
+        0,
+        cropCv.width,
+        cropCv.height
+      );
+
+      ipcRenderer.send('snipping-done', cropCv.toDataURL('image/png'));
+    });
+
+    function draw(curX, curY) {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+
+      // Donmuş ekran görüntüsü
+      ctx.drawImage(bg, 0, 0, cv.width, cv.height);
+
+      // Koyu perde
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.40)';
+      ctx.fillRect(0, 0, cv.width, cv.height);
+
+      // Seçilen yerin aydınlatılması
+      if (isDrawing && curX !== undefined) {
+        const rx = Math.min(sx, curX);
+        const ry = Math.min(sy, curY);
+        const rw = Math.abs(curX - sx);
+        const rh = Math.abs(curY - sy);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(rx, ry, rw, rh);
+        ctx.clip();
+        ctx.drawImage(bg, 0, 0, cv.width, cv.height);
+        ctx.restore();
+
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(rx, ry, rw, rh);
+      }
+    }
+
+    ipcRenderer.on('init-snip', (event, dataUrl) => {
+      cv.width = window.innerWidth;
+      cv.height = window.innerHeight;
+
+      bg.onload = () => {
+        ready = true;
+        draw();
+      };
+      bg.src = dataUrl;
+    });
+  </script>
+</body>
+>>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
+</html>

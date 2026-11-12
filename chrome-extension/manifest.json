@@ -1,0 +1,56 @@
+<<<<<<< HEAD
+{
+  "manifest_version": 3,
+  "name": "Lumina Quick Translate",
+  "version": "1.3",
+  "description": "Seçili metni Lumina Translate masaüstü uygulamasına gönderir.",
+  "permissions": [
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:3456/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+=======
+{
+  "manifest_version": 3,
+  "name": "Lumina Quick Translate",
+  "version": "1.3",
+  "description": "Seçili metni Lumina Translate masaüstü uygulamasına gönderir.",
+  "permissions": [
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:3456/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+>>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
+}
