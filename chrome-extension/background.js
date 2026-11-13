@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Eklenti yüklendiğinde sağ tık menüsüne ekle
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
@@ -20,7 +19,6 @@ chrome.contextMenus.onClicked.addListener((info) => {
       console.error("Lumina uygulamasına ulaşılamadı. Uygulamanın açık olduğundan emin olun.", err);
     });
   }
-=======
 // Eklenti yüklendiğinde sağ tık menüsüne ekle
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
@@ -42,5 +40,4 @@ chrome.contextMenus.onClicked.addListener((info) => {
       console.error("Lumina uygulamasına ulaşılamadı. Uygulamanın açık olduğundan emin olun.", err);
     });
   }
->>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
 });

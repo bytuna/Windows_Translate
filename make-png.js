@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
@@ -97,7 +96,6 @@ fs.writeFileSync(path.join(extDir, 'icon16.png'), createSolidPNG(16, 16, 99, 102
 fs.writeFileSync(path.join(extDir, 'icon48.png'), createSolidPNG(48, 48, 99, 102, 241));
 fs.writeFileSync(path.join(extDir, 'icon128.png'), createSolidPNG(128, 128, 99, 102, 241));
 
-=======
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
@@ -196,5 +194,4 @@ fs.writeFileSync(path.join(extDir, 'icon16.png'), createSolidPNG(16, 16, 99, 102
 fs.writeFileSync(path.join(extDir, 'icon48.png'), createSolidPNG(48, 48, 99, 102, 241));
 fs.writeFileSync(path.join(extDir, 'icon128.png'), createSolidPNG(128, 128, 99, 102, 241));
 
->>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
 console.log('✔ icon16.png, icon48.png, icon128.png başarıyla oluşturuldu!');

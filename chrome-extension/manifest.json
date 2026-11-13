@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "manifest_version": 3,
   "name": "Lumina Quick Translate",
@@ -25,7 +24,6 @@
     "48": "icon48.png",
     "128": "icon128.png"
   }
-=======
 {
   "manifest_version": 3,
   "name": "Lumina Quick Translate",
@@ -52,5 +50,4 @@
     "48": "icon48.png",
     "128": "icon128.png"
   }
->>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
 }

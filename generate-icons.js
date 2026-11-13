@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const fs = require('fs');
 const path = require('path');
 
@@ -57,7 +56,6 @@ fs.writeFileSync(path.join(publicDir, 'logo.svg'), svgLogo);
 fs.writeFileSync(path.join(extDir, 'logo.svg'), svgLogo);
 
 console.log('✔ SVG Logolar oluşturuldu!');
-=======
 const fs = require('fs');
 const path = require('path');
 
@@ -116,5 +114,4 @@ fs.writeFileSync(path.join(publicDir, 'logo.svg'), svgLogo);
 fs.writeFileSync(path.join(extDir, 'logo.svg'), svgLogo);
 
 console.log('✔ SVG Logolar oluşturuldu!');
->>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
 console.log('✔ PNG dönüştürmesi başlatılıyor...');

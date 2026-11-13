@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const path = require('path');
 
@@ -35,7 +34,6 @@ app.post('/api/translate', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Uygulama yayında: http://localhost:${PORT}`);
-=======
 const express = require('express');
 const path = require('path');
 
@@ -72,5 +70,4 @@ app.post('/api/translate', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Uygulama yayında: http://localhost:${PORT}`);
->>>>>>> e4103121aaa96aaed50a8b4e878a145d33f1e1ba
 });
